@@ -1,14 +1,16 @@
-type PopulationData = {
-  label: string;
-  data: { year: number; value: number; rate: number }[];
-};
+import { PopulationData } from "../types";
 
 type Props = {
   populationData: PopulationData[];
+  selectedCategories: string[];
 };
 
-const PopulationDisplay = ({ populationData }: Props) => {
-  if (!populationData || populationData.length === 0) {
+const PopulationDisplay = ({ populationData, selectedCategories }: Props) => {
+  const filterData = populationData.filter((category) =>
+    selectedCategories.includes(category.label)
+  );
+
+  if (!filterData || filterData.length === 0) {
     return <p className="mt-4 text-sm text-gray-500">人口データがありません</p>;
   }
 
@@ -16,7 +18,7 @@ const PopulationDisplay = ({ populationData }: Props) => {
     <div className="mt-4">
       <h3 className="text-lg font-medium text-gray-700">人口データ</h3>
       <ul className="mt-2">
-        {populationData.map((item) => (
+        {filterData.map((item) => (
           <li key={item.label} className="text-sm text-gray-600">
             <strong>{item.label}:</strong>{" "}
             {item.data.map((d) => (
