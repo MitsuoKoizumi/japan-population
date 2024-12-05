@@ -14,7 +14,6 @@ const PrefectureSelector = ({ prefectures }: Props) => {
   const [selectedPrefCode, setSelectedPrefCode] = useState<number | null>(null);
   const [populationData, setPopulationData] = useState<PopulationData[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const PrefectureSelector = ({ prefectures }: Props) => {
   };
 
   return (
-    <div>
+    <div className="px-5">
       <PrefectureDropdown
         prefectures={prefectures}
         onSelect={(prefCode) => {
@@ -58,9 +57,11 @@ const PrefectureSelector = ({ prefectures }: Props) => {
       )}
 
       {!error && populationData.length > 0 && (
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">表示する項目を選択:</h3>
-          <div className="mt-2">
+        <div className="mt-5 mb-2">
+          <div className="text-sm font-medium text-gray-700 text-center mb-2">
+            表示する項目を選択
+          </div>
+          <div className="flex justify-center gap-2">
             {populationData.map((category) => (
               <label key={category.label} className="block text-sm">
                 <input

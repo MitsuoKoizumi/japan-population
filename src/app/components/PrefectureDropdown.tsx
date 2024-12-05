@@ -24,7 +24,7 @@ const PrefectureDropdown = ({ prefectures, onSelect }: Props) => {
   };
 
   return (
-    <div className="w-64 mx-auto mt-10">
+    <div className="w-64 mx-auto mt-10 text-center">
       <label
         htmlFor="prefecture"
         className="block text-sm font-medium text-gray-700"

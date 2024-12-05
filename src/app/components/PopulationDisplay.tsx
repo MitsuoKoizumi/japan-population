@@ -17,6 +17,8 @@ type Props = {
   selectedCategories: string[];
 };
 
+const formatNumber = (value: number): string => value.toLocaleString("en-US");
+
 const PopulationDisplay = ({ populationData, selectedCategories }: Props) => {
   const filterData = populationData.filter((category) =>
     selectedCategories.includes(category.label)
@@ -45,8 +47,8 @@ const PopulationDisplay = ({ populationData, selectedCategories }: Props) => {
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="year" />
-            <YAxis />
-            <Tooltip />
+            <YAxis width={80} tickFormatter={formatNumber} />
+            <Tooltip formatter={(value: any) => formatNumber(Number(value))} />
             <Legend />
             {filterData.map((category) => (
               <Line
